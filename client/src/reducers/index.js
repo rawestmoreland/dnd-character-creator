@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import spellReducer from './spellReducer'
 import characterReducer from './characterReducer'
+import externalAPIReducer from './externalAPIReducer'
 
 export default combineReducers({
   character: characterReducer,
-  spells: spellReducer
+  external: externalAPIReducer
 })

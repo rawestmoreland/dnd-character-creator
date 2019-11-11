@@ -13,6 +13,7 @@ import {
 } from 'reactstrap'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { getCharacters, deleteCharacter } from '../actions/characterActions'
+import CharacterModal from './CharacterModal'
 
 class CharacterList extends Component {
   componentDidMount() {
@@ -34,6 +35,7 @@ class CharacterList extends Component {
     const { characters, loading } = this.props
     return (
       <Container>
+        <CharacterModal />
         {!loading ? (
           <ListGroup>
             <TransitionGroup className='shopping-list'>

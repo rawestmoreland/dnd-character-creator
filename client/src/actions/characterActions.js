@@ -21,12 +21,15 @@ export const getCharacters = () => dispatch => {
 }
 
 export const addCharacter = character => dispatch => {
-  axios.post('/api/characters', character).then(res =>
-    dispatch({
-      type: ADD_CHARACTER,
-      payload: res.data
-    })
-  )
+  axios
+    .post('/api/characters', character)
+    .then(res =>
+      dispatch({
+        type: ADD_CHARACTER,
+        payload: res.data
+      })
+    )
+    .catch(err => console.log(err))
 }
 
 export const deleteCharacter = id => dispatch => {

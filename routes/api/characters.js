@@ -16,22 +16,12 @@ router.get('/', (req, res) => {
 // @access Public (Private later)
 router.post('/', (req, res) => {
   const newCharacter = new Character({
-    owner: null,
     name: req.body.name,
     race: req.body.race,
-    class: req.body.class,
-    spells: null,
-    attributes: {
-      strength: null,
-      dexterity: null,
-      constitution: null,
-      willpower: null,
-      intelligence: null,
-      charisma: null
-    }
+    class: req.body.class
   })
 
-  newCharacter.save().then(character => character.json())
+  newCharacter.save().then(character => res.json(character))
 })
 
 // @ route DELETE api/characters/:id
@@ -39,7 +29,7 @@ router.post('/', (req, res) => {
 // @access Public (Private later)
 router.delete('/:id', (req, res) => {
   Character.findById(req.params.id)
-    .then(char => char.remove().then(res => res.json({ success: true })))
+    .then(char => char.remove().then(res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }))
 })
 
