@@ -1,0 +1,8 @@
+{
+  "short_name": "D&D Spell Finder",
+  "name": "D&D Spell Finder",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
