@@ -12,6 +12,9 @@ const CharacterSchema = new Schema({
   },
   class: {
     type: String
+  },
+  gender: {
+    type: String
   }
 })
 
