@@ -18,7 +18,8 @@ router.post('/', (req, res) => {
   const newCharacter = new Character({
     name: req.body.name,
     race: req.body.race,
-    class: req.body.class
+    class: req.body.class,
+    gender: req.body.gender
   })
 
   newCharacter.save().then(character => res.json(character))

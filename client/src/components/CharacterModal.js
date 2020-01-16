@@ -7,7 +7,8 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
+  Row
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import { addCharacter } from '../actions/characterActions'
@@ -20,7 +21,8 @@ class CharacterModal extends Component {
     modal: false,
     name: '',
     class: '',
-    race: ''
+    race: '',
+    gender: ''
   }
 
   static propTypes = {
@@ -43,6 +45,13 @@ class CharacterModal extends Component {
     })
   }
 
+  // Whether or not the delete button shows. Also disables the Link component
+  edit = () => {
+    this.setState({
+      edit: true
+    })
+  }
+
   // Change the state of the text input variables for the POST requests
   onChange = e => {
     // Update the name state to show in the text box and have a name to submit
@@ -50,7 +59,6 @@ class CharacterModal extends Component {
     this.setState({
       [e.target.name]: e.target.value
     })
-    console.log(this.state)
   }
 
   onSubmit = e => {
@@ -60,7 +68,8 @@ class CharacterModal extends Component {
     const newCharacter = {
       name: this.state.name,
       class: this.state.class,
-      race: this.state.race
+      race: this.state.race,
+      gender: this.state.gender
     }
 
     // Add new character to the database
@@ -76,7 +85,7 @@ class CharacterModal extends Component {
       <div>
         <Button
           color='dark'
-          style={{ marginBottom: '2rem' }}
+          style={{ marginBottom: '1rem' }}
           onClick={this.toggle}
         >
           New Character
@@ -94,6 +103,17 @@ class CharacterModal extends Component {
                   className='mb-2'
                   onChange={this.onChange}
                 />
+                <Input
+                  type='select'
+                  name='gender'
+                  id='gender'
+                  className='mb-2'
+                  onChange={this.onChange}
+                >
+                  <option default>Gender</option>
+                  <option value='Male'>Male</option>
+                  <option value='Female'>Female</option>
+                </Input>
                 <Input
                   type='select'
                   name='race'

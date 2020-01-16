@@ -11,11 +11,17 @@ import {
   Row,
   Col
 } from 'reactstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { getCharacters, deleteCharacter } from '../actions/characterActions'
 import CharacterModal from './CharacterModal'
 
 class CharacterList extends Component {
+  state = {
+    edit: false
+  }
+
   componentDidMount() {
     this.props.getCharacters()
   }
@@ -29,10 +35,21 @@ class CharacterList extends Component {
 
   onDeleteClick = id => {
     this.props.deleteCharacter(id)
+
+    if (this.props.characters.length === 1) {
+      this.setState({
+        edit: false
+      })
+    }
+  }
+
+  navigate = name => {
+    this.props.history.push(`/${name}`)
   }
 
   render() {
     const { characters, loading } = this.props
+
     return (
       <Container>
         <CharacterModal />
@@ -43,16 +60,21 @@ class CharacterList extends Component {
                 <CSSTransition key={_id} timeout={500} classNames='fade'>
                   <ListGroupItem>
                     <Row>
-                      <Col className='d-flex align-items-center'>{name}</Col>
-                      <Col className='d-flex justify-content-end'>
-                        <Button
-                          className='remove-btn'
-                          color='danger'
-                          size='sm'
+                      <Col
+                        xs='11'
+                        className='d-flex align-items-center'
+                        style={{ cursor: 'pointer' }}
+                        onClick={this.navigate.bind(this, name)}
+                      >
+                        {name}
+                      </Col>
+                      <Col xs='1' className='d-flex justify-content-end'>
+                        <FontAwesomeIcon
+                          icon={faTimesCircle}
+                          style={{ cursor: 'pointer' }}
+                          color='red'
                           onClick={this.onDeleteClick.bind(this, _id)}
-                        >
-                          &times;
-                        </Button>
+                        />
                       </Col>
                     </Row>
                   </ListGroupItem>
