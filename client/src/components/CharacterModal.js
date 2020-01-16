@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-<<<<<<< HEAD
 	Button,
 	Modal,
 	ModalHeader,
@@ -8,18 +7,8 @@ import {
 	Form,
 	FormGroup,
 	Label,
-	Input
-=======
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Row
->>>>>>> master
+	Input,
+	Row
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import { addCharacter } from '../actions/characterActions'
@@ -27,24 +16,14 @@ import { getClasses, getRaces } from '../actions/externalAPIActions'
 import PropTypes from 'prop-types'
 
 class CharacterModal extends Component {
-<<<<<<< HEAD
 	state = {
 		// Modal is closed when page loads
 		modal: false,
 		name: '',
 		class: '',
-		race: ''
+		race: '',
+		gender: ''
 	}
-=======
-  state = {
-    // Modal is closed when page loads
-    modal: false,
-    name: '',
-    class: '',
-    race: '',
-    gender: ''
-  }
->>>>>>> master
 
 	static propTypes = {
 		getClasses: PropTypes.func.isRequired,
@@ -66,32 +45,32 @@ class CharacterModal extends Component {
 		})
 	}
 
-  // Whether or not the delete button shows. Also disables the Link component
-  edit = () => {
-    this.setState({
-      edit: true
-    })
-  }
+	// Whether or not the delete button shows. Also disables the Link component
+	edit = () => {
+		this.setState({
+			edit: true
+		})
+	}
 
-  // Change the state of the text input variables for the POST requests
-  onChange = e => {
-    // Update the name state to show in the text box and have a name to submit
+	// Change the state of the text input variables for the POST requests
+	onChange = e => {
+		// Update the name state to show in the text box and have a name to submit
 
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
+		this.setState({
+			[e.target.name]: e.target.value
+		})
+	}
 
 	onSubmit = e => {
 		// Prevent the page from refreshing on submit
 		e.preventDefault()
 
-    const newCharacter = {
-      name: this.state.name,
-      class: this.state.class,
-      race: this.state.race,
-      gender: this.state.gender
-    }
+		const newCharacter = {
+			name: this.state.name,
+			class: this.state.class,
+			race: this.state.race,
+			gender: this.state.gender
+		}
 
 		// Add new character to the database
 		this.props.addCharacter(newCharacter)
@@ -100,26 +79,26 @@ class CharacterModal extends Component {
 		this.toggle()
 	}
 
-  render() {
-    const { races, classes } = this.props
-    return (
-      <div>
-        <Button
-          color='dark'
-          style={{ marginBottom: '1rem' }}
-          onClick={this.toggle}
-        >
-          New Character
-        </Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} centered={true}>
-          <ModalHeader toggle={this.toggle}>Add a New Character</ModalHeader>
-          <ModalBody>
-            <p>This is where character picking stuff will go</p>
-          </ModalBody>
-        </Modal>
-      </div>
-    )
-  }
+	render() {
+		const { races, classes } = this.props
+		return (
+			<div>
+				<Button
+					color='dark'
+					style={{ marginBottom: '1rem' }}
+					onClick={this.toggle}
+				>
+					New Character
+				</Button>
+				<Modal isOpen={this.state.modal} toggle={this.toggle} centered={true}>
+					<ModalHeader toggle={this.toggle}>Add a New Character</ModalHeader>
+					<ModalBody>
+						<p>This is where character picking stuff will go</p>
+					</ModalBody>
+				</Modal>
+			</div>
+		)
+	}
 }
 
 const mapStateToProps = state => ({
